@@ -64,7 +64,6 @@ public class Auto1TaskStepDef {
         dropdownSort.selectByVisibleText(selectedOption);
         //verify it is selected
         Assert.assertEquals(selectedOption,dropdownSort.getFirstSelectedOption().getText());
-        Thread.sleep(10000);
     }
 
     @Then("all cars' registrations should be {int} and {string}")
