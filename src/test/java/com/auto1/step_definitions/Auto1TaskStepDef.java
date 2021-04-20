@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Auto1TaskStepDef {
 
@@ -46,7 +47,7 @@ public class Auto1TaskStepDef {
     }
 
     @When("sorting option is as {string} selected")
-    public void sorting_option_is_as_selected(String selectedOption) throws InterruptedException, Exception {
+    public void sorting_option_is_as_selected(String selectedOption) throws InterruptedException, Exception{
         Select dropdownSort=new Select(searchPage.sortButton);
         List<WebElement> sortOptions = dropdownSort.getOptions();
 
@@ -63,6 +64,7 @@ public class Auto1TaskStepDef {
         dropdownSort.selectByVisibleText(selectedOption);
         //verify it is selected
         Assert.assertEquals(selectedOption,dropdownSort.getFirstSelectedOption().getText());
+        Thread.sleep(10000);
     }
 
     @Then("all cars' registrations should be {int} and {string}")
@@ -84,7 +86,7 @@ public class Auto1TaskStepDef {
     }
 
     @Then("all cars are sorted by price {string}")
-    public void all_cars_are_sorted_by_price(String ascendOrDescend) throws Exception {
+    public void all_cars_are_sorted_by_price(String ascendOrDescend) throws Exception, ArrayIndexOutOfBoundsException{
         String strTag;
         double price=0;
         List<Double> pricesList=new ArrayList<>();
@@ -111,5 +113,8 @@ public class Auto1TaskStepDef {
         else
             throw new Exception("Choose an existing sorting option");
     }
+
+
+
 
 }

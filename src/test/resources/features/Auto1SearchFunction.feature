@@ -19,3 +19,4 @@ Feature: Search Function
     #4 other sort options also can be entered ex:"Niedrigster Preis".
     #5 any year(int) together with "newer" and "older" options are selectable
     #6 "ascending" or "descending" options are available for verifying.
+
