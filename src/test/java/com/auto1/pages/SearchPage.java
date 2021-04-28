@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class SearchPage {
+public class SearchPage extends BasePage {
 
     public SearchPage() { PageFactory.initElements(Driver.get(), this);}
 
@@ -32,7 +32,7 @@ public class SearchPage {
     public List<WebElement> registrationYearTags;
 
     @FindBy(css = "button.button___50Uee")
-    public WebElement filterTag;
+    public List<WebElement> filterTag;
 
     @FindBy(css = "div.price___1A8DG")
     public List<WebElement> priceTags;

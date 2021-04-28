@@ -1,5 +1,7 @@
 package com.auto1.step_definitions;
 
+import com.auto1.pages.BasePage;
+import com.auto1.pages.Dashboard;
 import com.auto1.pages.SearchPage;
 import com.auto1.utilities.ConfigurationReader;
 import com.auto1.utilities.Driver;
@@ -7,6 +9,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -15,21 +18,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Auto1TaskStepDef {
+import static org.junit.Assert.assertTrue;
 
+public class Auto1TaskStepDef {
+    Dashboard dashboard=new Dashboard();
     SearchPage searchPage=new SearchPage();
 
     @Given("the user is on the {string} page")
     public void the_user_is_on_the_page(String page) {
-        switch (page) {
-            case "search":
-                Driver.get().get(ConfigurationReader.get("searchPageUrl"));
-                Assert.assertEquals("Deine Autosuche: Finde deinen neuen Gebrauchtwagen",searchPage.searchPageTitle.getText());
-                break;
-            case "other modules":
-                // to be added...
-                break;
-        }
+        dashboard.goToPage(page);
+        Assert.assertEquals("Deine Autosuche: Finde deinen neuen Gebrauchtwagen",searchPage.searchPageTitle.getText());
     }
 
     @When("registration filter is year {string} and {string} selected")
@@ -76,10 +74,10 @@ public class Auto1TaskStepDef {
                 e.printStackTrace();
             }
             if(newerOrOlder.equalsIgnoreCase("newer")){
-            Assert.assertTrue(actualRegistrationYear>=expectedYear);
+            assertTrue(actualRegistrationYear>=expectedYear);
             }
             else if(newerOrOlder.equalsIgnoreCase("older")){
-            Assert.assertTrue(actualRegistrationYear<=expectedYear);
+            assertTrue(actualRegistrationYear<=expectedYear);
             }
         }
     }
@@ -111,6 +109,7 @@ public class Auto1TaskStepDef {
         }
         else
             throw new Exception("Choose an existing sorting option");
+
     }
 
 
